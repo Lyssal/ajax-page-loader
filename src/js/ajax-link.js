@@ -94,7 +94,6 @@ export default class AjaxLink {
         }
       }
 
-      // let ajaxLoader = null;
       if (targetElement !== null && targetElement !== '') {
         this.displayLoading(targetElement);
       }

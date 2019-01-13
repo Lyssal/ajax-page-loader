@@ -54,6 +54,7 @@ export default class AjaxPageLoader {
 
   /**
    * Set the loading type.
+   * For now, only works with blinking.
    *
    * @param {string|null} loadingType The loading type
    */

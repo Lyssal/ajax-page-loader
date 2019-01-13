@@ -675,6 +675,11 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
+"@lyssal/blinking@^0.1.0":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@lyssal/blinking/-/blinking-0.1.1.tgz#0b50c6c6987aefc60ecc6569e7fe229e2aa6c107"
+  integrity sha512-3BGU0hLlmGAQHIRNFXyMyN65LeXvsUi7JS+tAKERCaXyHAy10cLMQT2f0iXzUGZI6WAlHCwUoDFDAbZjYe7C9Q==
+
 "@symfony/webpack-encore@^0.22.2":
   version "0.22.2"
   resolved "https://registry.yarnpkg.com/@symfony/webpack-encore/-/webpack-encore-0.22.2.tgz#036cffc86e2f4da2a194b5eabc2409c4ffe0d31b"

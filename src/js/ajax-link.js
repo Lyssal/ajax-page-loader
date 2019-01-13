@@ -185,7 +185,7 @@ export default class AjaxLink {
             this.eval(`${eventFunction}(element)`);
           }
         } else {
-          eventFunction(this.element);
+          eventFunction(this);
         }
       }
     }

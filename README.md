@@ -26,6 +26,7 @@ Set the attribute `data-ajax="true"` in your links or submit buttons to activate
 Init with:
 
 ```js
+import '@lyssal/ajax-page-loader/lib/ajax-page-loader.css';
 let ajaxPageLoader = new AjaxPageLoader();
 
 // The element in which the page loader will be used
@@ -37,6 +38,8 @@ ajaxPageLoader.setDefaultTarget('#page');
 ## Classic use
 
 ```html
+<link rel="stylesheet" href="{...}/ajax-page-loader/lib/ajax-page-loader.css">
+
 <script type="text/javascript" src="{...}/ajax-page-loader/lib/ajax-page-loader.var.js"></script>
 <script type="text/javascript">
   var ajaxPageLoader = new AjaxPageLoader();

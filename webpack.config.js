@@ -18,6 +18,7 @@ function getConfig (libraryTarget) {
     .enableSourceMaps(!Encore.isProduction())
     .disableSingleRuntimeChunk()
     .enableEslintLoader('airbnb')
+    .enableSassLoader()
   ;
 
   var config = Encore.getWebpackConfig();

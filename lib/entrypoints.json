@@ -1,11 +1,12 @@
 {
   "entrypoints": {
     "ajax-page-loader": {
+      "css": [
+        "ajax-page-loader.css"
+      ],
       "js": [
-        "ajax-page-loader.var.js"
+        "ajax-page-loader.commonjs2.js"
       ]
     }
-  }
-}
   }
 }

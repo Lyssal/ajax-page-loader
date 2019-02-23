@@ -71,7 +71,15 @@ ajaxPageLoader.setAfterAjaxLoadingEvent((ajaxLink) => {
   // Change the browser tab title
   const url = ajaxLink.getUrl();
   global.history.pushState({}, null, url);
+
+  // Update the tab title
+  document.title = document.querySelector('h1').textContent;
 });
+
+// As we dynamically change the URL, we refresh the page when the user use back / forward buttons
+window.addEventListener('popstate', function(event) {
+  window.location.href = window.location.pathname;
+}, false);
 ```
 
 

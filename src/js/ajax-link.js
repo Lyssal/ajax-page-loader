@@ -76,7 +76,11 @@ export default class AjaxLink {
           if (ajaxOptions.method.toLowerCase() === 'get') {
             ajaxOptions.data = AjaxLink.serializeFormGet(form);
           } else {
-            ajaxOptions.data = new global.window.FormData(form);
+            const formData = new global.window.FormData(form);
+
+            ajaxOptions.body = formData;
+            ajaxOptions.contentType = false;
+            ajaxOptions.processData = false;
           }
 
           // Add the button name, useful if there are many buttons
@@ -86,7 +90,7 @@ export default class AjaxLink {
             if (ajaxOptions.method.toLowerCase() === 'get') {
               ajaxOptions.data += `&${encodeURI(buttonName)}=${encodeURI(this.element.value)}`;
             } else {
-              ajaxOptions.data.append(buttonName, this.element.value);
+              ajaxOptions.body.append(buttonName, this.element.value);
             }
           }
         } else {

@@ -9,13 +9,13 @@ Laodings are created with the Lyssal blinking library.
 ### Yarn
 
 ```bash
-yarn add @lyssal/blinking
+yarn add @lyssal/ajax-page-loader
 ```
 
 ### NPM
 
 ```bash
-npm install @lyssal/blinking
+npm install @lyssal/ajax-page-loader
 ```
 
 

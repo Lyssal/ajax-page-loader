@@ -1,4 +1,4 @@
-import Blinking from '../../../blinking/src/js/blinking';
+import Blinking from '@lyssal/blinking/src/js/blinking';
 
 /**
  * A Ajax link.

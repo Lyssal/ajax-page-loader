@@ -27,6 +27,8 @@ Init with:
 
 ```js
 import '@lyssal/ajax-page-loader/lib/ajax-page-loader.css';
+import AjaxPageLoader from '@lyssal/ajax-page-loader/lib/ajax-page-loader.amd';
+
 let ajaxPageLoader = new AjaxPageLoader();
 
 // The element in which the page loader will be used

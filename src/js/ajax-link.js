@@ -281,13 +281,7 @@ export default class AjaxLink {
    * @return {ChildNode|null} The form
    */
   getForm() {
-    const forms = this.element.closest('form');
-
-    if (forms !== null) {
-      return forms[0];
-    }
-
-    return null;
+    return this.element.closest('form');
   }
 
   /**

@@ -74,9 +74,7 @@ export default class AjaxLink {
 
           this.processEvent('data-before-form-submitting', this.pageLoader.beforeFormSubmittingEvent);
 
-          if (method === 'get') {
-            url += '?' + AjaxLink.serializeFormGet(form);
-          } else {
+          if (method !== 'get') {
             const formData = new global.window.FormData(form);
 
             ajaxOptions.body = formData;
@@ -240,7 +238,7 @@ export default class AjaxLink {
    * @returns {string|null} The URL
    */
   getUrl() {
-    const url = this.getAttribute('data-url');
+    let url = this.getAttribute('data-url');
     if (url !== null) {
       return url;
     }
@@ -253,13 +251,18 @@ export default class AjaxLink {
     const form = this.getForm();
     if (form !== null) {
       if (form.hasAttribute('action')) {
-        return form.getAttribute('action');
+        url = form.getAttribute('action');
+      } else {
+        url = global.window.location.href;
       }
 
-      return global.window.location.href;
+      const method = AjaxLink.getElementAttribute(form, 'method', 'post').toLowerCase();
+      if (method === 'get') {
+        url += '?' + AjaxLink.serializeFormGet(form);
+      }
     }
 
-    return null;
+    return url;
   }
 
   /**

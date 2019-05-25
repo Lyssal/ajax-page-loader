@@ -51,7 +51,7 @@ export default class AjaxLink {
    * @returns {boolean} The event response
    */
   click(refreshTargets = true) {
-    let url = this.getUrl();
+    const url = this.getUrl();
 
     if (url !== null && typeof url !== 'undefined') {
       const targetElement = this.getTargetElement();
@@ -258,7 +258,7 @@ export default class AjaxLink {
 
       const method = AjaxLink.getElementAttribute(form, 'method', 'post').toLowerCase();
       if (method === 'get') {
-        url += '?' + AjaxLink.serializeFormGet(form);
+        url += `?${AjaxLink.serializeFormGet(form)}`;
       }
     }
 

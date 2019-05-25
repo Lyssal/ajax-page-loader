@@ -51,7 +51,7 @@ export default class AjaxLink {
    * @returns {boolean} The event response
    */
   click(refreshTargets = true) {
-    const url = this.getUrl();
+    let url = this.getUrl();
 
     if (url !== null && typeof url !== 'undefined') {
       const targetElement = this.getTargetElement();
@@ -67,14 +67,15 @@ export default class AjaxLink {
       // Options for form
       if (!this.isLink()) {
         const form = this.getForm();
+        let method;
         if (form !== null) {
           isForm = true;
-          ajaxOptions.method = AjaxLink.getElementAttribute(form, 'method', 'POST');
+          method = AjaxLink.getElementAttribute(form, 'method', 'post');
 
           this.processEvent('data-before-form-submitting', this.pageLoader.beforeFormSubmittingEvent);
 
-          if (ajaxOptions.method.toLowerCase() === 'get') {
-            ajaxOptions.data = AjaxLink.serializeFormGet(form);
+          if (method === 'get') {
+            url += '?' + AjaxLink.serializeFormGet(form);
           } else {
             const formData = new global.window.FormData(form);
 
@@ -87,15 +88,17 @@ export default class AjaxLink {
           // (to manage after a redirection for example)
           const buttonName = this.getAttribute('name');
           if (buttonName !== null) {
-            if (ajaxOptions.method.toLowerCase() === 'get') {
+            if (method === 'get') {
               ajaxOptions.data += `&${encodeURI(buttonName)}=${encodeURI(this.element.value)}`;
             } else {
               ajaxOptions.body.append(buttonName, this.element.value);
             }
           }
         } else {
-          ajaxOptions.method = this.getAttribute('data-method', this.pageLoader.defaultMethod);
+          method = this.getAttribute('data-method', this.pageLoader.defaultMethod).toLowerCase();
         }
+
+        ajaxOptions.method = method;
       }
 
       if (targetElement !== null && targetElement !== '') {

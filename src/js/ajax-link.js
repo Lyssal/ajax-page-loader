@@ -348,16 +348,16 @@ export default class AjaxLink {
    * @returns {string} The query string
    */
   static serializeFormGet(form) {
-    if (!form || form.nodeName.lower() !== 'form') {
+    if (!form || form.nodeName.toLowerCase() !== 'form') {
       return '';
     }
 
     const query = [];
     for (let i = form.elements.length - 1; i >= 0; i -= 1) {
       if (form.elements[i].name !== '') {
-        switch (form.elements[i].nodeName.lower()) {
+        switch (form.elements[i].nodeName.toLowerCase()) {
           case 'input':
-            switch (form.elements[i].type.lower()) {
+            switch (form.elements[i].type.toLowerCase()) {
               case 'checkbox':
               case 'radio':
                 if (form.elements[i].checked) {
@@ -394,7 +394,7 @@ export default class AjaxLink {
             query.push(`${form.elements[i].name}=${encodeURIComponent(form.elements[i].value)}`);
             break;
           case 'select':
-            switch (form.elements[i].type.lower()) {
+            switch (form.elements[i].type.toLowerCase()) {
               case 'select-one':
                 query.push(`${form.elements[i].name}=${encodeURIComponent(form.elements[i].value)}`);
                 break;
@@ -410,7 +410,7 @@ export default class AjaxLink {
             }
             break;
           case 'button':
-            switch (form.elements[i].type.lower()) {
+            switch (form.elements[i].type.toLowerCase()) {
               case 'reset':
               case 'submit':
               case 'button':

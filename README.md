@@ -29,12 +29,18 @@ Init with:
 import '@lyssal/ajax-page-loader/lib/ajax-page-loader.css';
 import AjaxPageLoader from '@lyssal/ajax-page-loader/lib/ajax-page-loader.amd';
 
+// You can redefine the elements to activate adding a parameter to the class
 let ajaxPageLoader = new AjaxPageLoader();
+
+// For element for all links except if they have the attribute `data-ajax="false"`.
+// let ajaxPageLoader = new AjaxPageLoader('a[href]:not([data-ajax="false"])');
 
 // The element in which the page loader will be used
 // By default, It is `body`
 ajaxPageLoader.setDefaultTarget('#page');
 ```
+
+If you have a problem with a form, verify if you have the `action` parameter.
 
 
 ## Classic use

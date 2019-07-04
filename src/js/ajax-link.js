@@ -58,6 +58,7 @@ export default class AjaxLink {
       const ajaxOptions = {
         mode: 'cors',
         redirect: 'follow',
+        credentials: 'same-origin',
         headers: {
           'X-Requested-With': 'Fetch',
         },
@@ -109,6 +110,7 @@ export default class AjaxLink {
       global.fetch(url, ajaxOptions)
         .then((response) => {
           if (!response.ok) {
+            console.error(response);
             throw Error(response);
           }
           return response.text();
@@ -117,9 +119,18 @@ export default class AjaxLink {
           if (redirectUrl === null) {
             this.updateAjaxContent(html);
           } else {
-            global.fetch(redirectUrl)
+            global
+              .fetch(redirectUrl, {
+                mode: 'cors',
+                credentials: 'same-origin',
+                method: 'get',
+                headers: {
+                  'X-Requested-With': 'Fetch',
+                },
+              })
               .then((response) => {
                 if (!response.ok) {
+                  console.error(response);
                   throw Error(response);
                 }
                 return response.text();

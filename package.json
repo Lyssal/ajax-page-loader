@@ -1,6 +1,6 @@
 {
   "name": "@lyssal/ajax-page-loader",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "A library to easyly load pages in AJAX.",
   "main": "lib/ajax-page-loader.js",
   "scripts": {
@@ -19,6 +19,7 @@
   "homepage": "https://github.com/Lyssal/ajax-page-loader",
   "dependencies": {
     "@lyssal/blinking": "^0.1",
+    "prod": "^1.0.1",
     "whatwg-fetch": "^3"
   },
   "devDependencies": {

@@ -13,6 +13,10 @@ export default class AjaxLink {
    */
   constructor(element, pageLoader) {
     this.element = element;
+    /**
+     * @type {String|null} If redirect, the redirect URL
+     */
+    this.formRedirectUrl = null;
     this.pageLoader = pageLoader;
     this.ajaxLoader = null;
     this.initClickEvent();
@@ -113,6 +117,9 @@ export default class AjaxLink {
             console.error(response);
             throw Error(response);
           }
+
+          this.formRedirectUrl = response.redirected ? response.url : null;
+
           return response.text();
         })
         .then((html) => {
@@ -176,9 +183,11 @@ export default class AjaxLink {
     const targetElement = this.getTargetElement();
 
     this.processEvent('data-before-content-setting', this.pageLoader.beforeContentSettingEvent);
+
     if (targetElement !== null && targetElement !== '') {
       targetElement.innerHTML = html;
     }
+
     this.pageLoader.setSelector(this.pageLoader.selector);
     this.processEvent('data-after-content-setting', this.pageLoader.afterContentSettingEvent);
   }
@@ -260,14 +269,18 @@ export default class AjaxLink {
 
     // Form button submit
     const form = this.getForm();
+
     if (form !== null) {
-      if (form.hasAttribute('action')) {
+      if (this.formRedirectUrl !== null) {
+        url = this.formRedirectUrl;
+      } else if (form.hasAttribute('action')) {
         url = form.getAttribute('action');
       } else {
         url = global.window.location.href;
       }
 
       const method = AjaxLink.getElementAttribute(form, 'method', 'post').toLowerCase();
+
       if (method === 'get') {
         url += `?${AjaxLink.serializeFormGet(form)}`;
       }

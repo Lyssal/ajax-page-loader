@@ -29,7 +29,7 @@
     "eslint-config-airbnb-base": "^13",
     "eslint-loader": "^2",
     "eslint-plugin-import": "^2",
-    "node-sass": "^4",
+    "node-sass": "^9",
     "sass-loader": "^7",
     "webpack-notifier": "^1"
   },

@@ -37,6 +37,7 @@ export default class AjaxLink {
     this.element.addEventListener('click', (event) => {
       if (onclickEvent !== null) {
         const clickReturn = onclickEvent();
+
         if (!clickReturn) {
           event.preventDefault();
           return;
@@ -73,6 +74,7 @@ export default class AjaxLink {
       if (!this.isLink()) {
         const form = this.getForm();
         let method;
+
         if (form !== null) {
           isForm = true;
           method = AjaxLink.getElementAttribute(form, 'method', 'post');
@@ -90,6 +92,7 @@ export default class AjaxLink {
           // Add the button name, useful if there are many buttons
           // (to manage after a redirection for example)
           const buttonName = this.getAttribute('name');
+
           if (buttonName !== null) {
             if (method === 'get') {
               ajaxOptions.data += `&${encodeURI(buttonName)}=${encodeURI(this.element.value)}`;
@@ -140,17 +143,22 @@ export default class AjaxLink {
                   console.error(response);
                   throw Error(response);
                 }
+
                 return response.text();
               })
               .then((redirectionHtml) => {
                 this.updateAjaxContent(redirectionHtml);
                 this.finalizeAjaxProcess(isForm);
               })
-              .catch(error => console.error(error));
+              .catch(error => {
+                this.hideLoading();
+                console.error(error);
+              });
           }
 
           if (refreshTargets) {
             const targetSelector = this.getAttribute('data-refresh-target');
+
             if (targetSelector !== null) {
               const refreshTargetElements = global.document.querySelectorAll(targetSelector);
 
@@ -165,12 +173,16 @@ export default class AjaxLink {
             this.finalizeAjaxProcess(isForm);
           }
         })
-        .catch(error => console.error(error));
+        .catch(error => {
+          this.hideLoading();
+          console.error(error);
+        });
 
       return false;
     }
 
     console.error('The element URL has not be found for the AJAX page loader.', this.element);
+
     return true;
   }
 
@@ -222,6 +234,7 @@ export default class AjaxLink {
    */
   finalizeAjaxProcess(isForm) {
     this.hideLoading();
+
     if (isForm) {
       this.processEvent('data-after-form-submitting', this.pageLoader.afterFormSubmittingEvent);
     }
@@ -259,6 +272,7 @@ export default class AjaxLink {
    */
   getUrl() {
     let url = this.getAttribute('data-url');
+
     if (url !== null) {
       return url;
     }
@@ -420,14 +434,17 @@ export default class AjaxLink {
               // no default
             }
             break;
+
           case 'textarea':
             query.push(`${form.elements[i].name}=${encodeURIComponent(form.elements[i].value)}`);
             break;
+
           case 'select':
             switch (form.elements[i].type.toLowerCase()) {
               case 'select-one':
                 query.push(`${form.elements[i].name}=${encodeURIComponent(form.elements[i].value)}`);
                 break;
+
               case 'select-multiple':
                 for (let j = form.elements[i].options.length - 1; j >= 0; j -= 1) {
                   if (form.elements[i].options[j].selected) {
@@ -439,6 +456,7 @@ export default class AjaxLink {
               // no default
             }
             break;
+
           case 'button':
             switch (form.elements[i].type.toLowerCase()) {
               case 'reset':

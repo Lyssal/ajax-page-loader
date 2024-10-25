@@ -1,6 +1,6 @@
 {
   "name": "@lyssal/ajax-page-loader",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "A library to easyly load pages in AJAX.",
   "main": "lib/ajax-page-loader.js",
   "scripts": {
@@ -23,15 +23,10 @@
     "whatwg-fetch": "^3"
   },
   "devDependencies": {
-    "@symfony/webpack-encore": "^4.6",
-    "babel-eslint": "^10",
-    "eslint": "^5",
-    "eslint-config-airbnb-base": "^13",
-    "eslint-loader": "^2",
-    "eslint-plugin-import": "^2",
-    "node-sass": "^7",
-    "sass-loader": "^7",
-    "webpack-notifier": "^1"
+    "@symfony/webpack-encore": "^5",
+    "sass": "^1.80.4",
+    "sass-loader": "^16.0.1",
+    "webpack-notifier": "^1.15.0"
   },
   "directories": {
     "lib": "lib"

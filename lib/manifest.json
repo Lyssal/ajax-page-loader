@@ -1,4 +1,4 @@
 {
-  "lib/ajax-page-loader.css": "ajax-page-loader.css",
-  "lib/ajax-page-loader.js": "ajax-page-loader.amd.js"
+  "lib/ajax-page-loader.css": "autoajax-page-loader.css",
+  "lib/ajax-page-loader.js": "autoajax-page-loader.amd.js"
 }

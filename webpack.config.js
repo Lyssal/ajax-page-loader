@@ -17,7 +17,6 @@ function getConfig (libraryTarget) {
     .enableBuildNotifications()
     .enableSourceMaps(!Encore.isProduction())
     .disableSingleRuntimeChunk()
-    .enableEslintLoader('airbnb')
     .enableSassLoader()
   ;
 
